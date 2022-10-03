@@ -73,28 +73,30 @@ switch ($_POST['boton']) {
             print json_encode($data);
         }
         break;
-
+        
     case 'Docentes':
-        $alumno = isset($_POST['docente']) ? $_POST['docente'] : '';
-    
-        $consulta = "SELECT * FROM empleado 
-        WHERE clave_empleado = '$alumno'";
-    
+       $docente = isset($_POST['docente']) ? $_POST['docente'] : '';
+
+        $consulta = "SELECT * FROM emepleado 
+        WHERE id = '$docente'";
+
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
-    
+
         if ($resultado->rowCount() > 1) {
-            $data = "warning";  
+            $data = "warning";
             print json_encode($data);
         } else {
-            $consulta1 = "DELETE FROM materias WHERE clave_empleado = '$materia'";
-    
+            $consulta1 = "DELETE FROM empleado WHERE id = '$docente'";
+
             $resultado1 = $conexion->prepare($consulta1);
             $resultado1->execute();
-    
+
             $data = "success";
             print json_encode($data);
         }
+        break
+        
         break;
 
     default:
