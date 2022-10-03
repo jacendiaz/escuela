@@ -29,6 +29,7 @@ switch ($_POST['boton']) {
             print json_encode($data);
         }
         break;
+        
     case 'Materias':
         $materia = isset($_POST['materia']) ? $_POST['materia'] : '';
 
@@ -51,6 +52,7 @@ switch ($_POST['boton']) {
             print json_encode($data);
         }
         break;
+        
     case 'Alumnos':
         $alumno = isset($_POST['alumno']) ? $_POST['alumno'] : '';
 
@@ -75,10 +77,10 @@ switch ($_POST['boton']) {
         break;
 
     case 'Docentes':
-        $alumno = isset($_POST['docente']) ? $_POST['docente'] : '';
+        $docente = isset($_POST['docente']) ? $_POST['docente'] : '';
     
         $consulta = "SELECT * FROM empleado 
-        WHERE clave_empleado = '$alumno'";
+        WHERE clave_empleado = '$docente'";
     
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
@@ -87,7 +89,7 @@ switch ($_POST['boton']) {
             $data = "warning";  
             print json_encode($data);
         } else {
-            $consulta1 = "DELETE FROM materias WHERE clave_empleado = '$materia'";
+            $consulta1 = "DELETE FROM empleado WHERE clave_empleado = '$docente'";
     
             $resultado1 = $conexion->prepare($consulta1);
             $resultado1->execute();
